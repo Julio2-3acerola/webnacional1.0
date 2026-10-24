@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# TODO: defina siteUrl em assets/js/config.js e execute node tools/prepare-production.cjs
+# SEU-DOMINIO.com.br é provisório; não publicar antes de gerar o endereço real.
+Sitemap: https://SEU-DOMINIO.com.br/sitemap.xml

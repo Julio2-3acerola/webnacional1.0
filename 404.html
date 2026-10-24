@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <!-- TODO: prepare-production.cjs define o domínio e o caminho base reais antes da publicação. -->
+    <base href="./">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#070708">
+    <meta name="robots" content="noindex, follow">
+    <title>Página não encontrada | Nacional Site</title>
+    <link rel="icon" href="assets/logo-ns.png">
+    <style>
+        :root { color-scheme: dark; --bg: #070708; --surface: #14161a; --text: #f3f4f6; --muted: #a3aab6; --primary: #ff7a00; }
+        * { box-sizing: border-box; }
+        body { min-height: 100vh; min-height: 100svh; margin: 0; padding: 32px 20px; display: grid; place-items: center; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
+        main { width: min(100%, 640px); padding: clamp(28px, 6vw, 56px); background: var(--surface); border: 1px solid rgba(255,255,255,.1); border-radius: 20px; }
+        .brand { display: inline-flex; align-items: center; gap: 12px; color: var(--text); font-weight: 700; text-decoration: none; }
+        .brand img { width: 42px; height: 42px; object-fit: contain; }
+        .code { margin: 40px 0 12px; color: var(--primary); font-weight: 800; font-size: clamp(64px, 18vw, 112px); line-height: 1; }
+        h1 { margin: 0 0 16px; font-size: clamp(26px, 6vw, 36px); letter-spacing: -.035em; line-height: 1.15; }
+        p { margin: 0; color: var(--muted); line-height: 1.7; }
+        .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+        .button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 13px 20px; border: 1px solid transparent; border-radius: 8px; background: var(--primary); color: #1a0e00; font: inherit; font-weight: 700; text-decoration: none; cursor: pointer; }
+        .secondary { background: transparent; border-color: rgba(255,255,255,.22); color: var(--text); }
+        .button:hover { filter: brightness(1.1); }
+        .button:focus-visible, .brand:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
+        .button:disabled { opacity: .5; cursor: default; filter: none; }
+        .notice { margin-top: 16px; font-size: 14px; }
+        @media (max-width: 400px) { .actions { flex-direction: column; } .button { width: 100%; } }
+    </style>
+    <script src="assets/js/config.js" defer></script>
+</head>
+<body>
+    <main>
+        <a class="brand" href="./" aria-label="Nacional Site — página inicial">
+            <img src="assets/logo-ns.png" alt="" width="42" height="42">
+            <span>Nacional Site</span>
+        </a>
+        <p class="code" aria-hidden="true">404</p>
+        <h1>Página não encontrada</h1>
+        <p>Este endereço pode ter mudado ou não estar mais disponível. Volte ao início para conhecer nossos sites e planos.</p>
+        <div class="actions">
+            <a class="button" href="./">Voltar ao início</a>
+            <button class="button secondary" type="button" id="contact" disabled aria-describedby="contact-status">Falar pelo WhatsApp</button>
+        </div>
+        <p class="notice" id="contact-status" role="status">O contato pelo WhatsApp ainda não está disponível. Você pode voltar à página inicial.</p>
+    </main>
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            const config = window.NS_CONFIG || {};
+            const digits = String(config.whatsappNumber || '').replace(/\D/g, '');
+            const button = document.getElementById('contact');
+            if (!/^\d{10,15}$/.test(digits)) return;
+            // A origem HTTPS é fixa; somente dígitos entram no caminho do WhatsApp.
+            const contactUrl = 'https://wa.me/' + digits + '?text=' + encodeURIComponent('Olá! Vim pelo site da Nacional Site e gostaria de mais informações.');
+            button.disabled = false;
+            document.getElementById('contact-status').textContent = 'Fale com a Nacional Site pelo WhatsApp.';
+            button.addEventListener('click', function () { window.location.assign(contactUrl); });
+        });
+    </script>
+</body>
+</html>
