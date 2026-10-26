@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AquaShine | Lavagem automotiva profissional – Demo</title>
+<meta name="description" content="AquaShine: lavagem externa, interna, polimento e higienização com agendamento online e planos de assinatura. Landing page demonstrativa.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--navy:#0b2a6b;--navy2:#071c4a;--blue:#1f56c4;--yel:#ffc21a;--bg:#f3f6fc;--tx:#14213d;--mut:#667089;--line:#e3e8f2}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{background:#fff;color:var(--tx);font:15px/1.55 Inter,system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--yel);outline-offset:3px}
+.w{width:min(1160px,100% - 40px);margin-inline:auto}
+section{padding:70px 0}
+h1,h2,h3{line-height:1.12}
+h2{font-size:clamp(1.7rem,3.6vw,2.3rem);font-weight:800;text-align:center;color:var(--navy)}
+.eb{display:block;text-align:center;font-size:.68rem;font-weight:700;color:var(--blue);letter-spacing:.14em;margin-bottom:8px}
+.sub{text-align:center;color:var(--mut);margin:8px 0 36px;font-size:.9rem}
+.ph{position:relative;overflow:hidden;background:var(--img,linear-gradient(145deg,var(--a,#2b4a86),#0a1a3c)) center/cover}
+.ph::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.22),transparent 55%)}
+.ph svg.i{position:absolute;left:50%;top:50%;width:46%;max-width:110px;transform:translate(-50%,-50%);stroke:rgba(255,255,255,.55);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:46px;padding:0 24px;border-radius:8px;border:2px solid transparent;font:700 .85rem Inter,sans-serif;cursor:pointer;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s,background .25s,color .25s}
+.btn.y{background:var(--yel);color:#1b1500}
+.btn.y::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.65) 50%,transparent 70%);transform:translateX(-120%);transition:transform .6s}
+.btn.y:hover::after{transform:translateX(120%)}
+.btn.y:hover{transform:translateY(-3px);box-shadow:0 10px 24px -8px rgba(255,194,26,.9)}
+.btn.g{border-color:rgba(255,255,255,.5);color:#fff}
+.btn.g:hover{background:#fff;color:var(--navy);transform:translateY(-3px)}
+.btn.n{background:var(--navy);color:#fff}.btn.n:hover{background:var(--blue);transform:translateY(-3px)}
+
+.top{background:var(--navy2);color:#dfe7fb;font-size:.72rem;padding:8px 0}
+.top .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.top b{color:var(--yel)}
+header{position:sticky;top:0;z-index:50;background:#fff;box-shadow:0 1px 0 var(--line);transition:box-shadow .3s}
+header.s{box-shadow:0 8px 24px -12px rgba(11,42,107,.3)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:70px;gap:20px}
+.logo{display:flex;gap:8px;align-items:center;font-weight:800;font-size:1.3rem;color:var(--navy)}
+.logo svg{width:32px;height:32px;fill:var(--blue)}
+.logo small{display:block;font-size:.55rem;letter-spacing:.2em;color:var(--mut);font-weight:600;line-height:1}
+nav ul{display:flex;gap:26px;list-style:none;padding:0}
+nav a{font-size:.8rem;font-weight:600;color:var(--tx);position:relative;padding:6px 0}
+nav a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--yel);transition:width .3s}
+nav a:hover::after{width:100%}
+.nr{display:flex;align-items:center;gap:18px}.tel{font-weight:700;font-size:.85rem;color:var(--navy)}
+.bb{display:none;width:44px;height:44px;background:none;border:0;position:relative;cursor:pointer}
+.bb::before,.bb::after,.bb span{content:"";position:absolute;left:10px;right:10px;height:2px;background:var(--navy);transition:.3s}
+.bb::before{top:15px}.bb span{top:21px}.bb::after{top:27px}
+.bb[aria-expanded=true]::before{top:21px;transform:rotate(45deg)}.bb[aria-expanded=true]::after{top:21px;transform:rotate(-45deg)}.bb[aria-expanded=true] span{opacity:0}
+
+.hero{background:linear-gradient(135deg,#0a1a3c,#0b2a6b);color:#fff;position:relative;padding:70px 0 110px;overflow:hidden}
+.hero .bgp{position:absolute;inset:0;background:var(--img,linear-gradient(120deg,transparent 35%,rgba(31,86,196,.5) 70%,rgba(255,255,255,.12))) center/cover}
+.hero .bgp::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,28,74,.92),rgba(7,28,74,.35) 75%)}
+.drop{position:absolute;right:30%;top:20%;width:90px;fill:rgba(255,255,255,.12);animation:fl 5s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-16px)}}
+.hero .w{position:relative;display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:800;max-width:11ch;margin-bottom:16px}
+.hero h1 em{font-style:normal;color:var(--yel)}
+.hero p{max-width:36ch;color:#d6e0f7;margin-bottom:24px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.bd{display:flex;gap:26px;flex-wrap:wrap;font-size:.75rem;font-weight:600}
+.bd span{display:flex;gap:8px;align-items:center}.bd svg{width:20px;height:20px;stroke:var(--yel);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.promo{justify-self:end;width:min(100%,250px);background:linear-gradient(160deg,#10389a,#0a2260);border:2px solid rgba(255,255,255,.7);border-radius:14px;padding:20px;text-align:center;box-shadow:0 20px 50px -10px rgba(0,0,0,.6);animation:fl 6s ease-in-out infinite}
+.promo small{font-size:.62rem;letter-spacing:.14em;font-weight:700;color:#bcd0ff}
+.promo b{display:block;font-size:2.8rem;font-weight:800;line-height:1.1;margin:4px 0}
+.promo p{font-size:.72rem;margin:0 0 12px}.promo p strong{color:var(--yel)}
+.promo .btn{width:100%;min-height:40px}
+.promo i{display:block;font-style:normal;font-size:.6rem;color:#9fb4e8;margin-top:8px}
+.in{opacity:0;transform:translateY(24px);animation:up .8s cubic-bezier(.2,.7,.2,1) forwards}
+.in:nth-child(2){animation-delay:.12s}.in:nth-child(3){animation-delay:.24s}.in:nth-child(4){animation-delay:.36s}
+@keyframes up{to{opacity:1;transform:none}}
+
+.book{margin-top:-64px;position:relative;z-index:5;padding:0 0 10px}
+.bx{background:#fff;border-radius:14px;box-shadow:0 20px 50px -18px rgba(11,42,107,.45);padding:22px 24px 14px}
+.bx h3{font-size:1rem;color:var(--navy);margin-bottom:14px}
+.bf{display:grid;grid-template-columns:repeat(4,1fr) auto;gap:12px}
+.bf label{display:grid;gap:4px;font-size:.62rem;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+select{height:46px;border:1px solid var(--line);border-radius:8px;padding:0 12px;font:500 .85rem Inter,sans-serif;color:var(--tx);background:#fff;transition:.2s}
+select:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 3px rgba(31,86,196,.15)}
+.bf .btn{align-self:end;min-height:46px}
+.chk{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;font-size:.7rem;color:var(--mut);padding-top:12px}
+.chk span::before{content:"✓ ";color:#2e9e5b;font-weight:800}
+
+.sg{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.sc{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;transition:transform .35s,box-shadow .35s,border-color .35s;position:relative}
+.sc:hover{transform:translateY(-8px);box-shadow:0 20px 36px -16px rgba(11,42,107,.4);border-color:var(--blue)}
+.sc .ph{height:110px}
+.sc .ic{width:32px;height:32px;border-radius:50%;background:var(--navy);display:grid;place-items:center;position:absolute;top:94px;left:12px;border:3px solid #fff;transition:.3s}
+.sc:hover .ic{background:var(--yel);transform:rotate(-12deg) scale(1.1)}
+.sc .ic svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sc:hover .ic svg{stroke:#1b1500}
+.sc div.t{padding:24px 14px 14px}
+.sc h3{font-size:.85rem;color:var(--navy);margin-bottom:4px}.sc p{font-size:.7rem;color:var(--mut);margin-bottom:10px;min-height:4.2em}
+.sc a{font-size:.7rem;font-weight:700;color:var(--blue);transition:.2s}.sc a:hover{letter-spacing:.03em}
+
+.sub-s{padding:0}
+.sb{display:grid;grid-template-columns:1fr 1fr;background:var(--bg)}
+.sb .l{background:linear-gradient(135deg,#0a2260,#1f56c4);color:#fff;padding:50px clamp(20px,5vw,60px);position:relative;overflow:hidden}
+.sb h2{text-align:left;color:#fff;font-size:1.8rem;margin-bottom:12px}.sb h2 em{font-style:normal;color:var(--yel)}
+.sb p{max-width:34ch;color:#d6e0f7;margin-bottom:20px;font-size:.88rem}
+.car{height:130px;margin-top:26px;border-radius:12px;--a:#1a3f9a}
+.sb .r{padding:50px clamp(20px,5vw,60px);display:grid;grid-template-columns:1fr 1fr;gap:26px;align-content:center}
+.bn{display:flex;gap:12px}.bn svg{width:30px;height:30px;flex:none;stroke:var(--blue);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:.3s}
+.bn:hover svg{stroke:#2e9e5b;transform:scale(1.15) rotate(-6deg)}
+.bn b{display:block;font-size:.88rem;color:var(--navy)}.bn span{font-size:.75rem;color:var(--mut)}
+
+.tg{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tc{border:1px solid var(--line);border-radius:12px;padding:20px;background:#fff;position:relative;transition:transform .3s,box-shadow .3s}
+.tc:hover{transform:translateY(-6px);box-shadow:0 18px 32px -16px rgba(11,42,107,.35)}
+.tc::after{content:"”";position:absolute;right:18px;top:6px;font-size:3.4rem;color:#dbe3f5;font-weight:800;line-height:1}
+.who{display:flex;gap:10px;align-items:center;margin-bottom:10px}.who i{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--navy))}
+.who b{display:block;font-size:.85rem}.who small{color:var(--mut);font-size:.7rem}
+.st{color:var(--yel);font-size:.9rem;margin-bottom:6px;letter-spacing:2px}
+.tc p{font-size:.8rem;color:var(--mut)}
+.dots{display:flex;gap:6px;justify-content:center;margin-top:22px}.dots i{width:7px;height:7px;border-radius:50%;background:#cdd6ea}.dots i:first-child{background:var(--navy)}
+
+.nl{background:var(--navy);color:#fff;padding:36px 0}
+.nl .w{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.nl h3{font-size:1.1rem;display:flex;gap:16px;align-items:center}.nl h3 svg{width:42px;height:42px;stroke:#fff;fill:none;stroke-width:1.4;flex:none}
+.nl h3 small{display:block;font-weight:400;font-size:.78rem;color:#bcd0ff;margin-top:2px}
+.nl form{display:flex;gap:10px;flex:1;min-width:260px;max-width:460px}
+.nl input{flex:1;min-width:0;height:46px;border:0;border-radius:8px;padding:0 14px;font:inherit}
+.nl input:focus{outline:2px solid var(--yel)}
+
+footer{background:var(--navy2);color:#b7c4e6;padding:50px 0 22px;font-size:.78rem}
+.fg{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px}
+footer .logo{color:#fff}footer .logo svg{fill:#fff}
+footer h4{color:#fff;font-size:.8rem;margin-bottom:12px}
+footer ul{list-style:none;padding:0}footer li{margin-bottom:7px}footer a:hover{color:var(--yel)}
+.soc{display:flex;gap:8px;margin-top:14px}.soc a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;font-weight:700;font-size:.7rem;transition:.3s}
+.soc a:hover{background:var(--yel);color:#1b1500;transform:translateY(-4px) rotate(8deg)}
+.cp{border-top:1px solid rgba(255,255,255,.1);margin-top:30px;padding-top:16px;font-size:.7rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s}.rv.show{opacity:1;transform:none}
+
+@media(max-width:900px){
+ section{padding:54px 0}
+ .top .w span:nth-child(2){display:none}
+ .bb{display:block}
+ nav{position:fixed;inset:auto 0 auto;top:calc(70px + var(--tb,34px));background:#fff;max-height:0;overflow:hidden;transition:max-height .4s;box-shadow:0 20px 30px -20px rgba(0,0,0,.3)}
+ nav.open{max-height:420px}
+ nav ul{flex-direction:column;gap:0;padding:6px 20px 16px}nav a{display:block;padding:13px 0}
+ .nr .tel,.nr .btn{display:none}
+ .hero .w{grid-template-columns:1fr}.promo{justify-self:start}
+ .hero{padding-bottom:100px}
+ .bf{grid-template-columns:1fr 1fr}.bf .btn{grid-column:1/-1}
+ .sg{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:-20px;padding:6px 20px 20px}
+ .sc{flex:0 0 62%;scroll-snap-align:center}
+ .sb,.tg,.fg{grid-template-columns:1fr}
+ .tg{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:-20px;padding:6px 20px}
+ .tc{flex:0 0 84%;scroll-snap-align:center}
+ .sb .r{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.in,.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="top"><div class="w"><span><b>⚡</b> Atendimento rápido</span><span>Produtos ecológicos e biodegradáveis</span><span>★★★★★ 4,8/5 em mais de 1.200 avaliações</span></div></div>
+<header id="h">
+ <div class="w nav">
+  <a href="#inicio" class="logo" aria-label="AquaShine – início"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2C10 10 6 14 6 20a10 10 0 0 0 20 0c0-6-4-10-10-18zm-3 18a3 3 0 0 0 3 3v2a5 5 0 0 1-5-5z"/></svg><span>AquaShine<small>LAVAGEM AUTO</small></span></a>
+  <nav id="nv" aria-label="Principal"><ul>
+   <li><a href="#inicio">Início</a></li><li><a href="#servicos">Serviços</a></li><li><a href="#planos">Assinaturas</a></li><li><a href="#sobre">Sobre</a></li><li><a href="#agendar">Agendar</a></li><li><a href="#contato">Contato</a></li>
+  </ul></nav>
+  <div class="nr"><a class="tel" href="tel:+559199990000">(91) 99999-0000</a><a class="btn y" href="#agendar" style="min-height:42px">Agendar horário</a><button class="bb" id="bb" aria-label="Abrir menu" aria-expanded="false" aria-controls="nv"><span></span></button></div>
+ </div>
+</header>
+
+<main>
+<section class="hero" id="inicio" style="padding-block:70px 110px">
+ <div class="bgp" role="img" aria-label="Lavagem de carro com jato de água"></div>
+ <svg class="drop" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2C10 10 6 14 6 20a10 10 0 0 0 20 0c0-6-4-10-10-18z"/></svg>
+ <div class="w">
+  <div>
+   <h1 class="in">Seu carro merece <em>o melhor</em></h1>
+   <p class="in">Lavagem profissional para um brilho impecável por fora e uma limpeza perfeita por dentro.</p>
+   <div class="ctas in"><a class="btn y" href="#agendar">Reservar agora →</a><a class="btn g" href="#servicos">Ver serviços</a></div>
+   <div class="bd in"><span><svg viewBox="0 0 24 24"><path d="M13 2L5 14h6l-1 8 8-12h-6z"/></svg>Serviço rápido</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Técnicos especialistas</span><span><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>100% de satisfação</span></div>
+  </div>
+  <aside class="promo in" aria-label="Oferta"><small>OFERTA DE ESTREIA</small><b>-20%</b><p>na sua primeira lavagem com o código <strong>AQUA20</strong></p><a class="btn y" href="#agendar">Quero aproveitar</a><i>Válido até 31/12/2026</i></aside>
+ </div>
+</section>
+
+<section class="book" id="agendar">
+ <div class="w"><div class="bx rv">
+  <h3>Reserve sua lavagem online</h3>
+  <form class="bf" onsubmit="event.preventDefault();this.querySelector('button').textContent='Horários enviados ✓'">
+   <label>Unidade<select><option>Selecionar</option><option>Centro</option><option>Zona Sul</option></select></label>
+   <label>Tipo de serviço<select><option>Selecionar</option><option>Lavagem externa</option><option>Lavagem interna</option><option>Completa</option></select></label>
+   <label>Dia<select><option>Selecionar</option><option>Hoje</option><option>Amanhã</option><option>Depois de amanhã</option></select></label>
+   <label>Horário<select><option>Selecionar</option><option>09:00</option><option>11:00</option><option>14:00</option><option>16:00</option></select></label>
+   <button class="btn n">Ver disponibilidade →</button>
+  </form>
+  <div class="chk"><span>Reserva simples</span><span>Remarcação grátis</span><span>Cancelamento sem custo</span></div>
+ </div></div>
+</section>
+
+<section id="servicos">
+ <div class="w">
+  <span class="eb">NOSSOS SERVIÇOS</span><h2 class="rv">Uma lavagem para cada necessidade</h2><p class="sub">Serviços profissionais para cuidar do seu veículo por inteiro.</p>
+  <div class="sg rv">
+   <article class="sc"><div class="ph" style="--a:#2d5aa8"><svg class="i" viewBox="0 0 48 48"><path d="M24 6c8 10 12 14 12 20a12 12 0 0 1-24 0c0-6 4-10 12-20z"/></svg></div><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z"/></svg></span><div class="t"><h3>Lavagem externa</h3><p>Limpeza completa da lataria, rodas e vidros.</p><a href="#agendar">Saiba mais →</a></div></article>
+   <article class="sc"><div class="ph" style="--a:#26406f"><svg class="i" viewBox="0 0 48 48"><circle cx="24" cy="24" r="14"/><path d="M24 10v28M10 24h28"/></svg></div><span class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="10" rx="2"/><path d="M7 8l2-4h6l2 4"/></svg></span><div class="t"><h3>Lavagem interna</h3><p>Aspiração, higienização de painel e bancos.</p><a href="#agendar">Saiba mais →</a></div></article>
+   <article class="sc"><div class="ph" style="--a:#3a5f9c"><svg class="i" viewBox="0 0 48 48"><path d="M24 6l4 12 12 4-12 4-4 12-4-12-12-4 12-4z"/></svg></div><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg></span><div class="t"><h3>Polimento e brilho</h3><p>Remove riscos leves e devolve o brilho da pintura.</p><a href="#agendar">Saiba mais →</a></div></article>
+   <article class="sc"><div class="ph" style="--a:#5a6a85"><svg class="i" viewBox="0 0 48 48"><rect x="12" y="8" width="24" height="32" rx="6"/></svg></div><span class="ic"><svg viewBox="0 0 24 24"><rect x="7" y="4" width="10" height="16" rx="3"/></svg></span><div class="t"><h3>Higienização de bancos</h3><p>Limpeza profunda de tecido e couro.</p><a href="#agendar">Saiba mais →</a></div></article>
+   <article class="sc"><div class="ph" style="--a:#2a3550"><svg class="i" viewBox="0 0 48 48"><rect x="8" y="14" width="32" height="22" rx="3"/><path d="M16 14v-4h16v4"/></svg></div><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></span><div class="t"><h3>Limpeza de motor</h3><p>Desengraxe seguro com proteção dos componentes.</p><a href="#agendar">Saiba mais →</a></div></article>
+   <article class="sc"><div class="ph" style="--a:#356aa8"><svg class="i" viewBox="0 0 48 48"><path d="M24 6l14 5v12c0 9-6 15-14 19-8-4-14-10-14-19V11z"/></svg></div><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/></svg></span><div class="t"><h3>Proteção cerâmica</h3><p>Camada protetora de longa duração contra sol e chuva.</p><a href="#agendar">Saiba mais →</a></div></article>
+  </div>
+ </div>
+</section>
+
+<section class="sub-s" id="planos">
+ <div class="sb rv">
+  <div class="l"><h2>A assinatura que cuida <em>do seu carro</em></h2><p>Lave seu veículo quantas vezes quiser todo mês, com planos sem fidelidade e cancelamento a qualquer momento.</p><a class="btn y" href="#agendar">Conhecer assinaturas →</a><div class="ph car" role="img" aria-label="Carro azul brilhando"></div></div>
+  <div class="r" id="sobre">
+   <div class="bn"><svg viewBox="0 0 24 24"><path d="M20 4C10 4 5 9 5 16c0 2 .5 4 .5 4C12 18 17 14 20 4zM5 20c2-5 5-8 9-10"/></svg><div><b>Ecológico</b><span>Produtos biodegradáveis e reuso de água.</span></div></div>
+   <div class="bn"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg><div><b>Qualidade premium</b><span>Materiais profissionais e equipe certificada.</span></div></div>
+   <div class="bn"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>Economia de tempo</b><span>Agende online e deixe o carro com a gente.</span></div></div>
+   <div class="bn"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg><div><b>Satisfação garantida</b><span>Não gostou? Refazemos sem custo.</span></div></div>
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="w">
+  <span class="eb">AVALIAÇÕES</span><h2 class="rv">Clientes que confiam na AquaShine</h2><p class="sub"></p>
+  <div class="tg rv">
+   <article class="tc"><div class="who"><i></i><span><b>Thomas L.</b><small>Cliente mensal</small></span></div><div class="st">★★★★★</div><p>Serviço impecável! Meu carro voltou como novo e a equipe foi muito profissional.</p></article>
+   <article class="tc"><div class="who"><i></i><span><b>Sofia M.</b><small>Assinante AquaShine</small></span></div><div class="st">★★★★★</div><p>A assinatura vale muito a pena. Meu carro está sempre limpo, sem eu me preocupar.</p></article>
+   <article class="tc"><div class="who"><i></i><span><b>Julian D.</b><small>Novo cliente</small></span></div><div class="st">★★★★★</div><p>Reserva simples, preço justo e resultado rápido. Recomendo de olhos fechados!</p></article>
+  </div>
+  <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+ </div>
+</section>
+</main>
+
+<div class="nl"><div class="w">
+ <h3><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 6l9 7 9-7"/></svg><span>Receba nossas ofertas exclusivas<small>Promoções e dicas de cuidado com o seu carro.</small></span></h3>
+ <form onsubmit="event.preventDefault();this.querySelector('button').textContent='Inscrito ✓'"><input type="email" required placeholder="Seu melhor e-mail" aria-label="E-mail"><button class="btn y">Inscrever-se</button></form>
+</div></div>
+
+<footer id="contato">
+ <div class="w">
+  <div class="fg">
+   <div><a href="#inicio" class="logo"><svg viewBox="0 0 32 32"><path d="M16 2C10 10 6 14 6 20a10 10 0 0 0 20 0c0-6-4-10-10-18z"/></svg><span>AquaShine</span></a><p style="margin-top:10px;max-width:28ch">Lavagem automotiva profissional, rápida e sustentável.</p><div class="soc"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="Instagram">ig</a><a href="#" aria-label="TikTok">tk</a><a href="#" aria-label="YouTube">yt</a></div></div>
+   <div><h4>Serviços</h4><ul><li><a href="#servicos">Lavagem externa</a></li><li><a href="#servicos">Lavagem interna</a></li><li><a href="#servicos">Polimento</a></li><li><a href="#servicos">Proteção cerâmica</a></li></ul></div>
+   <div><h4>Informações</h4><ul><li><a href="#sobre">Sobre nós</a></li><li><a href="#planos">Assinaturas</a></li><li><a href="#">Perguntas frequentes</a></li><li><a href="#">Política de privacidade</a></li></ul></div>
+   <div><h4>Contato</h4><ul><li>Av. das Palmeiras, 120 – Centro</li><li>(91) 99999-0000</li><li>contato@aquashine.demo</li><li>Seg a sáb, 8h às 19h</li></ul></div>
+  </div>
+  <div class="cp"><span>© 2026 AquaShine – Projeto demonstrativo. Todos os direitos reservados.</span><span>Termos · Privacidade</span></div>
+ </div>
+</footer>
+
+<script>
+const h=document.getElementById('h'),bb=document.getElementById('bb'),nv=document.getElementById('nv');
+addEventListener('scroll',()=>h.classList.toggle('s',scrollY>30),{passive:true});
+bb.onclick=()=>{const o=nv.classList.toggle('open');bb.setAttribute('aria-expanded',o)};
+nv.querySelectorAll('a').forEach(a=>a.onclick=()=>{nv.classList.remove('open');bb.setAttribute('aria-expanded',false)});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

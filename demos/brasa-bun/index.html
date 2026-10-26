@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brasa &amp; Bun | Hamburgueria artesanal – Demo</title>
+<meta name="description" content="Brasa &amp; Bun: hambúrgueres artesanais, ingredientes frescos e ambiente urbano. Peça agora ou reserve sua mesa. Landing page demonstrativa.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@600&family=Inter:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#121110;--bg2:#1c1a18;--card:#242120;--tx:#f3ece2;--mut:#a89d90;--ac:#f2a93b;--hot:#d9382b;--ink:#1a1209;
+--disp:"Bebas Neue",Impact,sans-serif;--hand:"Caveat",cursive,sans-serif;--body:"Inter",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--tx);font:16px/1.6 var(--body);overflow-x:hidden;
+background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 38px),repeating-linear-gradient(90deg,rgba(255,255,255,.015) 0 1px,transparent 1px 76px)}
+img,svg{max-width:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+section{padding:90px 0}
+h1,h2,h3{font-family:var(--disp);font-weight:400;line-height:1;letter-spacing:.02em}
+h2{font-size:clamp(2.4rem,6vw,3.8rem);margin-bottom:12px}
+.hand{font-family:var(--hand);color:var(--ac);font-size:1.6rem}
+
+/* header */
+header{position:fixed;inset:0 0 auto;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .3s,box-shadow .3s}
+header.stuck{background:rgba(18,17,16,.88);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(255,255,255,.07)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font:1.8rem var(--disp);letter-spacing:.05em;display:flex;gap:8px;align-items:center}
+.logo b{color:var(--ac);font-weight:400}
+nav ul{display:flex;gap:28px;list-style:none;padding:0}
+nav a{font-size:.9rem;color:var(--mut);padding:6px 0;border-bottom:2px solid transparent;transition:.25s}
+nav a:hover{color:var(--tx);border-color:var(--ac)}
+.burger-btn{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;position:relative}
+.burger-btn span,.burger-btn::before,.burger-btn::after{content:"";position:absolute;left:10px;right:10px;height:2px;background:var(--tx);transition:.3s}
+.burger-btn::before{top:15px}.burger-btn span{top:21px}.burger-btn::after{top:27px}
+.burger-btn[aria-expanded=true]::before{top:21px;transform:rotate(45deg)}
+.burger-btn[aria-expanded=true]::after{top:21px;transform:rotate(-45deg)}
+.burger-btn[aria-expanded=true] span{opacity:0}
+
+/* buttons (uiverse-style) */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 28px;border-radius:999px;border:0;cursor:pointer;font:700 .95rem var(--body);overflow:hidden;isolation:isolate;transition:transform .25s,box-shadow .25s}
+.btn.pri{background:var(--ac);color:var(--ink);box-shadow:0 8px 24px -8px rgba(242,169,59,.7)}
+.btn.pri::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%);transition:transform .6s}
+.btn.pri:hover::before{transform:translateX(120%)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 30px -8px rgba(242,169,59,.8)}
+.btn.glass{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);color:var(--tx);backdrop-filter:blur(8px)}
+.btn.glass:hover{background:rgba(255,255,255,.14);box-shadow:none}
+.btn:active{transform:scale(.96)}
+
+/* hero */
+.hero{min-height:100svh;display:flex;align-items:center;padding:110px 0 60px;position:relative;background:radial-gradient(60% 60% at 75% 45%,rgba(242,169,59,.18),transparent 70%)}
+.hero .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:30px;align-items:center}
+.hero h1{font-size:clamp(4.2rem,11vw,8.5rem);color:var(--ac);text-shadow:0 0 40px rgba(242,169,59,.35)}
+.hero h1 small{display:block;font-size:.42em;color:var(--tx);text-shadow:none}
+.hero p{color:var(--mut);max-width:30ch;margin:18px 0 28px;font-size:1.1rem}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.stage{position:relative;display:grid;place-items:center}
+.stage svg.big{width:min(100%,560px);filter:drop-shadow(0 40px 50px rgba(0,0,0,.7));animation:float 5s ease-in-out infinite}
+.tag{position:absolute;font-family:var(--hand);font-size:clamp(1.4rem,3vw,2.2rem);color:var(--tx);text-shadow:0 2px 12px #000}
+.tag.a{right:0;bottom:6%;transform:rotate(-6deg)}
+.tag.b{left:2%;top:4%;color:var(--ac)}
+.badge{position:absolute;top:-6px;right:0;background:var(--ac);color:var(--ink);font:1.3rem var(--disp);letter-spacing:.06em;padding:4px 18px;transform:rotate(3deg) skewX(-8deg);box-shadow:4px 4px 0 var(--hot);animation:pulse 2.6s infinite}
+@keyframes float{50%{transform:translateY(-14px) rotate(1.5deg)}}
+@keyframes pulse{50%{box-shadow:4px 4px 0 var(--hot),0 0 22px rgba(242,169,59,.7)}}
+.in{opacity:0;transform:translateY(24px);animation:up .9s cubic-bezier(.2,.7,.2,1) forwards}
+.in:nth-child(2){animation-delay:.15s}.in:nth-child(3){animation-delay:.3s}.in:nth-child(4){animation-delay:.45s}
+@keyframes up{to{opacity:1;transform:none}}
+
+/* menu */
+.head{text-align:center;margin-bottom:44px}
+.head::after{content:"";display:block;width:90px;height:3px;background:linear-gradient(90deg,var(--hot),var(--ac));margin:14px auto 0;border-radius:3px}
+.track{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:var(--card);border-radius:18px;padding:22px 18px 20px;text-align:center;position:relative;border:1px solid rgba(255,255,255,.06);transition:transform .35s,box-shadow .35s,border-color .35s}
+.card::before{content:"";position:absolute;inset:-1px;border-radius:19px;background:conic-gradient(from var(--a,0deg),transparent 60%,var(--ac),transparent);z-index:-1;opacity:0;transition:opacity .35s}
+.card:hover{transform:translateY(-10px);box-shadow:0 24px 40px -16px rgba(0,0,0,.8),0 0 30px -6px rgba(242,169,59,.35);border-color:rgba(242,169,59,.5)}
+.card .day{font:1.1rem var(--disp);color:var(--hot);letter-spacing:.12em}
+.card svg{width:130px;height:auto;margin:10px auto;transition:transform .4s}
+.card:hover svg{transform:scale(1.12) rotate(-4deg)}
+.card h3{font-size:1.7rem}
+.card p{color:var(--mut);font-size:.88rem;min-height:3.2em;margin:6px 0 14px}
+.price{display:inline-block;background:var(--ac);color:var(--ink);font-weight:700;padding:6px 18px;border-radius:8px;transition:.25s}
+.card:hover .price{background:var(--hot);color:#fff}
+
+/* hours */
+.hours{background:var(--bg2)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.list{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:22px;border-top:2px solid var(--hot);padding-top:22px}
+.list dt{color:var(--ac);font-weight:700;font-size:.9rem}
+.list dd{color:var(--mut);margin-bottom:14px;font-size:.92rem}
+.maps{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.map{aspect-ratio:1;border-radius:14px;position:relative;overflow:hidden;background:#e8e4da;transition:transform .3s;
+background-image:linear-gradient(#fff 3px,transparent 3px),linear-gradient(90deg,#fff 3px,transparent 3px),linear-gradient(#d3cdbf 1px,transparent 1px),linear-gradient(90deg,#d3cdbf 1px,transparent 1px);background-size:70px 70px,70px 70px,18px 18px,18px 18px}
+.map:hover{transform:scale(1.04) rotate(-1deg)}
+.map i{position:absolute;left:50%;top:42%;width:26px;height:26px;background:var(--hot);border-radius:50% 50% 50% 0;transform:translate(-50%,-50%) rotate(-45deg);animation:drop 2s infinite}
+.map i::after{content:"";position:absolute;inset:8px;background:#fff;border-radius:50%}
+.map span{position:absolute;bottom:0;inset-inline:0;background:rgba(18,17,16,.85);text-align:center;padding:6px;font-size:.85rem}
+@keyframes drop{50%{top:38%}}
+
+/* reservas */
+.res{background:var(--ac);color:var(--ink);padding:0;border-block:6px solid var(--hot)}
+.res .two{gap:0}
+.collage{position:relative;min-height:420px;background:#2a1a10;overflow:hidden}
+.collage div{position:absolute;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.5);transition:transform .5s}
+.collage .c1{inset:8% 30% 30% 8%;background:linear-gradient(135deg,#7a2a6b,#d9382b 60%,#f2a93b)}
+.collage .c2{inset:40% 6% 8% 38%;background:linear-gradient(160deg,#3b2414,#8a5a2b)}
+.collage .c3{inset:14% 6% 58% 62%;background:linear-gradient(135deg,#f2a93b,#7a3a1a)}
+.collage svg{position:absolute;width:50%;left:28%;top:36%;filter:drop-shadow(0 12px 14px rgba(0,0,0,.6));animation:float 6s ease-in-out infinite}
+.collage:hover .c1{transform:translate(-6px,-6px)}.collage:hover .c2{transform:translate(6px,6px)}
+.res .txt{padding:60px clamp(20px,5vw,70px)}
+.res h2{color:var(--ink)}
+.res p{margin-bottom:14px;max-width:46ch}
+.res .btn{background:var(--ink);color:var(--ac)}
+
+/* perks */
+.perks{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.perk{padding:34px 24px;border-radius:18px;background:var(--card);border:1px solid rgba(217,56,43,.5);text-align:center;position:relative;overflow:hidden;transition:transform .35s,box-shadow .35s}
+.perk::after{content:"";position:absolute;inset:auto -20% -60% -20%;height:80%;background:radial-gradient(circle,rgba(217,56,43,.35),transparent 65%);opacity:0;transition:.4s}
+.perk:hover{transform:translateY(-8px);box-shadow:0 0 36px -6px rgba(217,56,43,.5)}
+.perk:hover::after{opacity:1}
+.perk svg{width:54px;height:54px;stroke:var(--ac);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;margin-bottom:12px;transition:transform .5s}
+.perk:hover svg{transform:rotate(-8deg) scale(1.15)}
+.perk h3{font-size:1.6rem;color:var(--hot);margin-bottom:6px}
+.perk p{color:var(--mut);font-size:.93rem;position:relative;z-index:1}
+
+/* footer */
+footer{background:#0b0a09;padding:60px 0 0}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px}
+footer h3{font-size:1.4rem;color:var(--ac);margin-bottom:10px}
+footer p,footer li{color:var(--mut);font-size:.92rem}
+footer ul{list-style:none;padding:0}
+footer a:hover{color:var(--ac)}
+.soc{display:flex;gap:10px;margin-top:14px}
+.soc a{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--card);border:1px solid rgba(255,255,255,.1);transition:.3s;font-weight:700}
+.soc a:hover{background:var(--ac);color:var(--ink);transform:translateY(-4px) rotate(8deg);box-shadow:0 8px 18px -4px rgba(242,169,59,.7)}
+.copy{background:var(--hot);margin-top:46px;padding:12px 0;font-size:.82rem}
+.copy .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}
+.rv.show{opacity:1;transform:none}
+
+@media(max-width:860px){
+ section{padding:64px 0}
+ .burger-btn{display:block}
+ nav{position:fixed;inset:68px 0 auto;background:rgba(18,17,16,.97);max-height:0;overflow:hidden;transition:max-height .4s}
+ nav.open{max-height:380px}
+ nav ul{flex-direction:column;gap:0;padding:10px 20px 20px}
+ nav a{display:block;padding:14px 0;font-size:1.05rem}
+ .hero .wrap,.two,.fgrid{grid-template-columns:1fr}
+ .hero{text-align:center}.hero p{margin-inline:auto}.cta{justify-content:center}
+ .track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding:6px 20px 24px;margin-inline:-20px;scrollbar-width:none}
+ .track .card{flex:0 0 72%;scroll-snap-align:center}
+ .perks{grid-template-columns:1fr}
+ .collage{min-height:320px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.in,.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<!-- Ícone reutilizável do hambúrguer -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="bg" viewBox="0 0 200 160">
+ <ellipse cx="100" cy="148" rx="80" ry="8" fill="#000" opacity=".35"/>
+ <path d="M18 78C18 30 55 8 100 8s82 22 82 70z" fill="#d98a2b"/>
+ <path d="M40 40c20-18 50-24 78-18" stroke="#f6c66b" stroke-width="6" fill="none" stroke-linecap="round" opacity=".6"/>
+ <g fill="#fbe8b8"><ellipse cx="62" cy="34" rx="5" ry="2.5" transform="rotate(-20 62 34)"/><ellipse cx="100" cy="24" rx="5" ry="2.5"/><ellipse cx="138" cy="36" rx="5" ry="2.5" transform="rotate(20 138 36)"/><ellipse cx="118" cy="52" rx="5" ry="2.5"/><ellipse cx="80" cy="54" rx="5" ry="2.5"/></g>
+ <path d="M12 82q18 14 36 0t36 0 36 0 36 0 36 0v10H12z" fill="#7bb33a"/>
+ <path d="M16 90h168l-14 14-14-8-14 14-14-14-14 8-14-8-14 14-14-14-14 8-14-8-14 14z" fill="#f2a93b"/>
+ <rect x="14" y="96" width="172" height="22" rx="11" fill="#4a2417"/>
+ <path d="M14 108h172" stroke="#2e140c" stroke-width="3" opacity=".6"/>
+ <path d="M18 120h164c0 20-22 28-82 28s-82-8-82-28z" fill="#c9792a"/>
+</symbol>
+</defs>
+</svg>
+
+<header id="top">
+ <div class="wrap nav">
+  <a href="#inicio" class="logo" aria-label="Brasa &amp; Bun – início"><svg width="34" height="28" aria-hidden="true"><use href="#bg"/></svg>BRASA <b>&amp;</b> BUN</a>
+  <nav id="nav" aria-label="Principal">
+   <ul>
+    <li><a href="#inicio">Início</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#reservas">Reservas</a></li>
+    <li><a href="#horarios">Horários</a></li>
+    <li><a href="#contato">Contato</a></li>
+   </ul>
+  </nav>
+  <button class="burger-btn" id="bb" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav"><span></span></button>
+ </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+ <div class="wrap">
+  <div>
+   <p class="hand in" style="margin:0;max-width:none">sabor de brasa</p>
+   <h1 class="in"><small>O burger da</small>BRASA</h1>
+   <p class="in">Blend artesanal, pão macio e cebola caramelizada. Peça sem fila, retire no balcão ou receba em casa.</p>
+   <div class="cta in"><a class="btn pri" href="#menu">Peça agora</a><a class="btn glass" href="#reservas">Reservar mesa</a></div>
+  </div>
+  <div class="stage in">
+   <span class="badge">NOVA RECEITA</span>
+   <span class="tag b">+ cebola caramelizada</span>
+   <svg class="big" viewBox="0 0 200 160" role="img" aria-label="Hambúrguer artesanal com queijo derretido"><use href="#bg"/></svg>
+   <span class="tag a">and cheese, always</span>
+  </div>
+ </div>
+</section>
+
+<section id="menu">
+ <div class="wrap">
+  <div class="head rv"><h2>Menu semanal</h2><p class="hand">Um destaque novo a cada dia</p></div>
+  <div class="track rv">
+   <article class="card"><div class="day">SEGUNDA</div><svg viewBox="0 0 200 160" role="img" aria-label="Burger Fresh"><use href="#bg"/></svg><h3>Fresh</h3><p>Alface, tomate, pepino e queijo prato.</p><span class="price">R$ 31</span></article>
+   <article class="card"><div class="day">QUARTA</div><svg viewBox="0 0 200 160" role="img" aria-label="Burger Simple Cheese" style="filter:hue-rotate(-8deg)"><use href="#bg"/></svg><h3>Simple Cheese</h3><p>Cheddar, maionese da casa e ketchup.</p><span class="price">R$ 34</span></article>
+   <article class="card"><div class="day">QUINTA</div><svg viewBox="0 0 200 160" role="img" aria-label="Burger Sabrosa" style="filter:saturate(1.3) brightness(.9)"><use href="#bg"/></svg><h3>Sabrosa</h3><p>Cheddar, bacon crocante e cebola roxa.</p><span class="price">R$ 42</span></article>
+   <article class="card"><div class="day">SEXTA</div><svg viewBox="0 0 200 160" role="img" aria-label="Burger Grasosa" style="filter:hue-rotate(10deg) brightness(.95)"><use href="#bg"/></svg><h3>Grasosa</h3><p>Duplo blend, duplo cheddar e molho defumado.</p><span class="price">R$ 48</span></article>
+  </div>
+ </div>
+</section>
+
+<section class="hours" id="horarios">
+ <div class="wrap two">
+  <div class="rv">
+   <h2>Horários e unidades</h2>
+   <dl class="list">
+    <div><dt>Segunda</dt><dd>Fechado</dd><dt>Terça a sexta</dt><dd>18h às 23h30</dd><dt>Sábado e domingo</dt><dd>12h às 00h</dd></div>
+    <div><dt>Centro</dt><dd>Rua das Brasas, 144</dd><dt>Zona Sul</dt><dd>Av. Liberdade, 3883</dd></div>
+   </dl>
+  </div>
+  <div class="maps rv"><div class="map" role="img" aria-label="Mapa estilizado da unidade Centro"><i></i><span>Centro</span></div><div class="map" role="img" aria-label="Mapa estilizado da unidade Zona Sul"><i></i><span>Zona Sul</span></div></div>
+ </div>
+</section>
+
+<section class="res" id="reservas">
+ <div class="two">
+  <div class="collage rv" role="img" aria-label="Colagem do ambiente da hamburgueria"><div class="c1"></div><div class="c2"></div><div class="c3"></div><svg viewBox="0 0 200 160"><use href="#bg"/></svg></div>
+  <div class="txt rv">
+   <h2>Reservas</h2>
+   <p class="hand" style="color:var(--hot)">Guardamos a sua mesa.</p>
+   <p>Neon, madeira e música boa: nosso salão foi pensado para quem quer comer sem pressa. Reserve para o grupo todo e chegue com a mesa pronta.</p>
+   <a class="btn" href="#contato">Reservar mesa</a>
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+  <div class="head rv"><h2>Por que a Brasa</h2></div>
+  <div class="perks">
+   <article class="perk rv"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="14" cy="36" r="6"/><circle cx="36" cy="36" r="6"/><path d="M14 36l8-16h8l6 16M10 14h10"/></svg><h3>Delivery rápido</h3><p>Entrega em até 40 minutos, ainda quente.</p></article>
+   <article class="perk rv"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 40C10 34 8 18 18 10c4 0 6 2 6 4 0-2 2-4 6-4 10 8 8 24-6 30z"/><path d="M24 14v-6"/></svg><h3>Ingredientes frescos</h3><p>Carne moída no dia e pães assados toda manhã.</p></article>
+   <article class="perk rv"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40V22l16-12 16 12v18z"/><path d="M19 40V28h10v12"/></svg><h3>Ambiente agradável</h3><p>Salão aconchegante, ideal para grupos e casais.</p></article>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer id="contato">
+ <div class="wrap fgrid">
+  <div><h3>Brasa &amp; Bun</h3><p>Hamburgueria artesanal. Projeto demonstrativo, marca fictícia.</p>
+   <div class="soc"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="WhatsApp">WA</a><a href="mailto:ola@brasaebun.demo" aria-label="E-mail">@</a></div></div>
+  <div><h3>Contato</h3><ul><li>(91) 99999-0000</li><li>ola@brasaebun.demo</li><li>Rua das Brasas, 144</li><li>@brasaebun</li></ul></div>
+  <div><h3>Links</h3><ul><li><a href="#menu">Menu</a></li><li><a href="#reservas">Reservas</a></li><li><a href="#horarios">Horários</a></li></ul></div>
+ </div>
+ <div class="copy"><div class="wrap"><span>Brasa &amp; Bun</span><span>© 2026 Demo. Todos os direitos reservados.</span></div></div>
+</footer>
+
+<script>
+const h=document.getElementById('top'),bb=document.getElementById('bb'),nav=document.getElementById('nav');
+addEventListener('scroll',()=>h.classList.toggle('stuck',scrollY>30),{passive:true});
+bb.onclick=()=>{const o=nav.classList.toggle('open');bb.setAttribute('aria-expanded',o);};
+nav.querySelectorAll('a').forEach(a=>a.onclick=()=>{nav.classList.remove('open');bb.setAttribute('aria-expanded',false)});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%4)*80+'ms';io.observe(el)});
+</script>
+</body>
+</html>
