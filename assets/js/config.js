@@ -20,7 +20,7 @@ window.NS_CONFIG = {
     testimonials: [],             // Somente relatos reais autorizados: { name, business, text }.
     demoUrls: {
         simples: "https://julio2-3acerola.github.io/mvpa-aidahoraclint/",
-        medio: "",               // TODO: inserir uma demonstração real do plano Médio quando disponível.
+        medio: "demos/aquashine/index.html",
         pro: "https://julio2-3acerola.github.io/mvpa-aiteria/"
     },
     // Capturas reais das demos (WebP/AVIF/PNG). Vazio mantém o mockup ilustrativo.

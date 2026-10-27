@@ -866,8 +866,8 @@
                 </div>
                 <div class="portfolio-content">
                     <h3>Site Médio — R$ 280</h3>
-                    <p>Objetivo: organizar serviços, produtos e informações para facilitar pedidos de orçamento.</p>
-                    <button type="button" class="portfolio-link open-iframe-demo is-disabled" data-demo-plan="medio" data-title="Demonstração — Site Médio (R$ 280)" data-project="plano-medio" disabled>Demonstração em breve</button>
+                    <p>AquaShine: demonstração de lavagem automotiva com serviços, agendamento e planos de assinatura, adaptada para PC, tablet e celular.</p>
+                    <button type="button" class="portfolio-link open-iframe-demo" data-demo-plan="medio" data-title="AquaShine — Demonstração do Site Médio (R$ 280)" data-project="plano-medio" aria-label="Ver demonstração AquaShine do site de R$ 280 nesta página">Ver demonstração ➔</button>
                 </div>
             </div>
 
@@ -1641,7 +1641,7 @@
                     if (CONFIG[key] && !safeUrl(CONFIG[key])) warn('URL HTTPS inválida no CONFIG: ' + key);
                 });
                 ['founderImage', 'favicon'].forEach(key => { if (CONFIG[key] && !safeAsset(CONFIG[key])) warn('Imagem inválida no CONFIG: ' + key); });
-                Object.entries(CONFIG.demoUrls || {}).forEach(([key, url]) => { if (url && !safeUrl(url)) warn('URL de demonstração inválida: ' + key); });
+                Object.entries(CONFIG.demoUrls || {}).forEach(([key, url]) => { if (url && !safeAsset(url)) warn('URL de demonstração inválida: ' + key); });
                 Object.entries(CONFIG.monthlyPlans || {}).forEach(([key, value]) => { if (value !== '' && !(typeof value === 'number' && Number.isFinite(value) && value > 0)) warn('Mensalidade inválida: ' + key + '. Use um número positivo em reais ou campo vazio.'); });
                 const faviconCheck = new Image();
                 faviconCheck.onerror = () => warn('Favicon não encontrado. Verifique CONFIG.favicon ou assets/logo-ns.png.');
@@ -1950,7 +1950,7 @@
             });
 
             document.querySelectorAll('.open-iframe-demo').forEach(btn => {
-                const url = safeUrl((CONFIG.demoUrls || {})[btn.dataset.demoPlan]);
+                const url = safeAsset((CONFIG.demoUrls || {})[btn.dataset.demoPlan]);
                 btn.disabled = !url;
                 btn.classList.toggle('is-disabled', !url);
                 btn.textContent = url ? 'Ver demonstração ➔' : 'Demonstração em breve';
