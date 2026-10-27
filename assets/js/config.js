@@ -7,7 +7,7 @@
 window.NS_CONFIG = {
     companyName: "Nacional Site",
     siteUrl: "",                  // TODO: domínio HTTPS definitivo, sem caminhos de páginas.
-    whatsappNumber: "",          // TODO: número real com DDI e DDD, somente dígitos.
+    whatsappNumber: "559182521335", // WhatsApp com DDI 55 e DDD 91, somente dígitos.
     instagramUrl: "",
     tiktokUrl: "",
     facebookUrl: "",

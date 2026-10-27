@@ -802,7 +802,7 @@
             <p class="hero-lead">Um site profissional para apresentar seu negócio, facilitar o contato e transformar visitantes em clientes. Feito para pequenos negócios e empresas locais.</p>
             <p class="hero-price">Planos a partir de <strong>R$230</strong>, com botão direto para o seu WhatsApp.</p>
             <div class="hero-cta-group">
-                <a href="#" class="btn-primary whatsapp-cta" data-source="hero">Quero meu site</a>
+                <a href="#" class="btn-primary whatsapp-cta" data-source="hero" data-wa-message="Olá! Quero saber mais sobre os sites disponíveis.">Quero meu site</a>
                 <a href="#portfolio" class="btn-secondary">Ver projetos</a>
             </div>
             <p class="hero-micro">Você fala direto com a gente pelo WhatsApp, sem formulário.</p>
@@ -1608,6 +1608,15 @@
                     }
                 });
             }
+            document.querySelectorAll('.pricing-card').forEach(card => {
+                const cta = card.querySelector('.whatsapp-cta[data-plan]');
+                if (!cta) return;
+                const benefits = Array.from(card.querySelectorAll('.pricing-features li'), item => '- ' + item.textContent.trim());
+                const message = 'Olá! Vim pelo site da Nacional Site e quero contratar o plano ' + cta.dataset.plan + ' de ' + cta.dataset.price + '.\n\nBenefícios do plano:\n' + benefits.join('\n') + '\n\nGostaria de saber como começar!';
+                document.querySelectorAll('.whatsapp-cta[data-plan]').forEach(link => {
+                    if (link.dataset.plan === cta.dataset.plan) link.setAttribute('data-wa-message', message);
+                });
+            });
             document.querySelectorAll('[data-monthly-plan]').forEach(el => {
                 const amount = (CONFIG.monthlyPlans || {})[el.dataset.monthlyPlan];
                 const card = el.closest('.recurring-card');
