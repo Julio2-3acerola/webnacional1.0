@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#070708">
+    <script>
+        (function () {
+            try {
+                const saved = localStorage.getItem('ns-theme');
+                const theme = saved === 'light' || saved === 'dark' ? saved : 'dark';
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (error) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
     <title>Nacional Site — Sites profissionais a partir de R$230 para pequenos negócios</title>
     <meta name="description" content="A Nacional Site cria sites profissionais, responsivos e com botão direto para WhatsApp para pequenos negócios e empresas locais. Planos a partir de R$230.">
     <meta name="robots" content="index, follow">
@@ -105,22 +116,9 @@
 
         [hidden] { display: none !important; }
 
-        /* Custom Cursor (somente mouse; ativado no primeiro movimento) */
-        .cursor-dot, .cursor-circle {
-            position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
-            opacity: 0; transition: opacity 0.3s ease;
-        }
-        .cursor-dot { width: 8px; height: 8px; background-color: var(--primary); border-radius: 50%; }
-        .cursor-circle {
-            width: 36px; height: 36px; border: 1px solid rgba(255, 122, 0, 0.5); border-radius: 50%;
-            transition: width 0.3s var(--ease), height 0.3s var(--ease), border-color 0.3s ease, opacity 0.3s ease;
-        }
-        .cursor-circle.is-hover { width: 56px; height: 56px; border-color: var(--primary); }
-        body.has-cursor .cursor-dot, body.has-cursor .cursor-circle { opacity: 1; }
-        body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none !important; }
-        body.has-cursor.modal-open, body.has-cursor.modal-open * { cursor: auto !important; }
-        body.has-cursor.modal-open .cursor-dot, body.has-cursor.modal-open .cursor-circle { opacity: 0; }
-        body.has-cursor.modal-open button, body.has-cursor.modal-open a { cursor: pointer !important; }
+        /* Cursor padrão do sistema */
+        body, a, button { cursor: auto; }
+        a, button { cursor: pointer; }
 
         /* Intro */
         .intro-overlay {
@@ -184,6 +182,56 @@
         .nav-links a:not(.btn-primary):hover,
         .nav-links a:not(.btn-primary):focus-visible { background: var(--primary); color: var(--on-primary); }
         .nav-links .btn-primary { padding: 10px 20px; min-height: 40px; }
+
+        /* Tema claro */
+        html[data-theme="light"] {
+            --bg: #f4f6fa;
+            --bg-surface: #ffffff;
+            --bg-card: #ffffff;
+            --border: rgba(23, 32, 51, 0.11);
+            --border-hover: rgba(255, 122, 0, 0.55);
+            --text: #172033;
+            --text-muted: #5d6678;
+            --text-dim: #747d8f;
+            --primary-glow: rgba(255, 122, 0, 0.18);
+        }
+        html[data-theme="light"] body { background-color: var(--bg); }
+        html[data-theme="light"] header::before { background: rgba(255, 255, 255, 0.86); }
+        html[data-theme="light"] .nav-links { background: rgba(255, 255, 255, 0.92); box-shadow: 0 12px 30px rgba(23, 32, 51, 0.10); }
+        html[data-theme="light"] .hero h1 { background: linear-gradient(180deg, #172033 0%, #697386 100%); -webkit-background-clip: text; background-clip: text; }
+        html[data-theme="light"] .portal-container { box-shadow: 0 30px 60px rgba(23, 32, 51, 0.14); }
+        html[data-theme="light"] .device-desktop,
+        html[data-theme="light"] .device-phone { background: #ffffff; border-color: #ccd3df; }
+        html[data-theme="light"] .device-bar { background: #eef1f6; }
+        html[data-theme="light"] .device-bar span { color: #596174; }
+        html[data-theme="light"] .device-tiles span { background: rgba(23, 32, 51, 0.035); }
+        html[data-theme="light"] .phone-speaker { background: #ccd3df; }
+        html[data-theme="light"] .pricing-price,
+        html[data-theme="light"] .compare-table .price-row td,
+        html[data-theme="light"] .footer-col h3 { color: var(--text); }
+        html[data-theme="light"] #community .community-label { color: var(--text); }
+        html[data-theme="light"] #community .community-tooltip { background: #ffffff; color: var(--text); border-color: var(--border); }
+
+        .header-actions { display: flex; align-items: center; gap: 8px; }
+        .theme-toggle {
+            width: 56px; height: 56px; flex: 0 0 56px; display: inline-grid; place-items: center;
+            border: 0; border-radius: 50%; background: #fff; color: #172033;
+            cursor: pointer; margin-left: 8px; box-shadow: 0 0 50px 20px rgba(0, 0, 0, 0.1);
+            line-height: 1; transition: transform 250ms ease, box-shadow 250ms ease;
+        }
+        .theme-toggle:hover { transform: translateY(-2px); box-shadow: 0 0 42px 18px rgba(255, 122, 0, 0.12); }
+        .theme-toggle svg { width: 32px; height: 32px; fill: currentColor; stroke: none; }
+        .theme-toggle .icon {
+            grid-column: 1 / 1; grid-row: 1 / 1; line-height: 0.1;
+            transition: transform 500ms;
+        }
+        .theme-toggle .icon--moon { transition-delay: 200ms; }
+        .theme-toggle .icon--sun { transform: scale(0); }
+        html[data-theme="light"] .theme-toggle .icon--moon { transform: rotate(360deg) scale(0); }
+        html[data-theme="light"] .theme-toggle .icon--sun {
+            transition-delay: 200ms;
+            transform: scale(1) rotate(360deg);
+        }
 
         /* Buttons */
         .btn-primary {
@@ -678,6 +726,9 @@
             .founder-container { grid-template-columns: 1fr; gap: 40px; }
             .founder-image-wrapper { max-width: 400px; margin: 0 auto; width: 100%; }
 
+            .header-actions { position: relative; z-index: 101; }
+            .theme-toggle { width: 44px; height: 44px; flex-basis: 44px; margin-left: 0; }
+            .theme-toggle svg { width: 24px; height: 24px; }
             .nav-links {
                 position: fixed; inset: 0; width: 100%; height: 100vh; height: 100dvh; padding: 24px; background: var(--bg);
                 border: 0; border-radius: 0; box-shadow: none; flex-direction: column; justify-content: center; align-items: center; gap: 12px;
@@ -740,10 +791,6 @@
             .btn-primary, .btn-secondary { padding: 14px 18px; }
         }
 
-        @media (hover: none), (pointer: coarse) {
-            .cursor-dot, .cursor-circle { display: none; }
-            body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: auto !important; }
-        }
 
         /* Movimento reduzido */
         @media (prefers-reduced-motion: reduce) {
@@ -751,7 +798,6 @@
             *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
             .intro-ns { opacity: 1; transform: none; }
             .loader::before { width: 100%; }
-            .cursor-dot, .cursor-circle { display: none; }
             .why-card:hover, .portfolio-card:hover, .pricing-card:hover, .recurring-card:hover, .process-step:hover, .type-card:hover { transform: none; }
         }
     </style>
@@ -760,10 +806,6 @@
     <noscript><p class="noscript-note">Para utilizar todos os recursos da Nacional Site, ative o JavaScript. Os planos de criação são Simples (R$230), Médio (R$280) e Pro (R$360). Consulte os projetos e as informações abaixo.</p></noscript>
 
     <a class="skip-link" href="#main">Pular para o conteúdo</a>
-
-    <!-- Cursor personalizado -->
-    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-    <div class="cursor-circle" id="cursorCircle" aria-hidden="true"></div>
 
     <!-- Intro cinematográfica -->
     <div class="intro-overlay" id="introOverlay" hidden>
@@ -787,9 +829,20 @@
             <a href="#community" data-requires-community hidden>Comunidade</a>
             <a href="#" class="btn-primary whatsapp-cta" data-source="header">Falar no WhatsApp</a>
         </nav>
-        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
-            <span></span><span></span><span></span>
-        </button>
+        <div class="header-actions">
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Ativar modo claro">
+                <span class="icon icon--moon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clip-rule="evenodd"/></svg>
+                </span>
+                <span class="icon icon--sun" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/></svg>
+                </span>
+                <span class="sr-only" id="themeToggleText">Ativar modo claro</span>
+            </button>
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
     </header>
 
     <main id="main" tabindex="-1">
@@ -1440,6 +1493,37 @@
             const $ = (id) => document.getElementById(id);
 
             /* ==========================================================
+               TEMA CLARO/ESCuro
+               ========================================================== */
+            const themeToggle = $('themeToggle');
+            const themeToggleText = $('themeToggleText');
+            const themeMeta = document.querySelector('meta[name="theme-color"]');
+
+            function syncTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                const isLight = theme === 'light';
+                if (themeToggle) {
+                    const label = isLight ? 'Ativar modo escuro' : 'Ativar modo claro';
+                    themeToggle.setAttribute('aria-label', label);
+                    themeToggle.setAttribute('title', label);
+                    themeToggle.setAttribute('aria-pressed', String(isLight));
+                }
+                if (themeToggleText) themeToggleText.textContent = isLight ? 'Ativar modo escuro' : 'Ativar modo claro';
+                if (themeMeta) themeMeta.setAttribute('content', isLight ? '#f4f6fa' : '#070708');
+            }
+
+            const initialTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+            syncTheme(initialTheme);
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    const nextTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+                    syncTheme(nextTheme);
+                    try { localStorage.setItem('ns-theme', nextTheme); } catch (error) { /* armazenamento opcional */ }
+                    Analytics.track('theme_change', { theme: nextTheme });
+                });
+            }
+
+            /* ==========================================================
                ANALYTICS (estrutura pronta, sem ferramenta configurada)
                Um único destino externo: gtag OU dataLayer, nunca ambos.
                ns:analytics é uma observação local; não reencaminhe o mesmo evento.
@@ -1690,43 +1774,6 @@
             /* ==========================================================
                CURSOR PERSONALIZADO (apenas mouse, sem movimento reduzido)
                ========================================================== */
-            const cursorDot = $('cursorDot');
-            const cursorCircle = $('cursorCircle');
-            const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-            if (finePointer && !prefersReducedMotion && cursorDot && cursorCircle) {
-                let mouseX = 0, mouseY = 0, circleX = 0, circleY = 0, cursorRaf = 0, cursorReady = false;
-                const hoverSelector = 'a, button, .why-card, .portfolio-card, .pricing-card, .tooltip-container';
-
-                const renderCursor = () => {
-                    if (prefersReducedMotion || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-                        document.body.classList.remove('has-cursor'); cursorRaf = 0; cursorReady = false; return;
-                    }
-                    circleX += (mouseX - circleX) * 0.15;
-                    circleY += (mouseY - circleY) * 0.15;
-                    cursorCircle.style.transform = 'translate(' + circleX + 'px,' + circleY + 'px) translate(-50%,-50%)';
-                    cursorRaf = (Math.abs(mouseX - circleX) > 0.1 || Math.abs(mouseY - circleY) > 0.1)
-                        ? requestAnimationFrame(renderCursor) : 0;
-                };
-
-                window.addEventListener('mousemove', (e) => {
-                    if (prefersReducedMotion || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-                    mouseX = e.clientX; mouseY = e.clientY;
-                    if (!cursorReady || !document.body.classList.contains('has-cursor')) {
-                        cursorReady = true; circleX = mouseX; circleY = mouseY;
-                        document.body.classList.add('has-cursor');
-                    }
-                    cursorDot.style.transform = 'translate(' + mouseX + 'px,' + mouseY + 'px) translate(-50%,-50%)';
-                    if (!cursorRaf) cursorRaf = requestAnimationFrame(renderCursor);
-                }, { passive: true });
-
-                document.addEventListener('mouseover', (e) => {
-                    cursorCircle.classList.toggle('is-hover', !!(e.target.closest && e.target.closest(hoverSelector)));
-                });
-                document.addEventListener('mouseleave', () => { cursorDot.style.opacity = 0; cursorCircle.style.opacity = 0; });
-                document.addEventListener('mouseenter', () => { cursorDot.style.opacity = ''; cursorCircle.style.opacity = ''; });
-            }
-
             /* ==========================================================
                INTRO CINEMATOGRÁFICA
                ========================================================== */
@@ -2227,7 +2274,6 @@
             motionQuery.addEventListener('change', event => {
                 prefersReducedMotion = event.matches;
                 if (prefersReducedMotion) {
-                    document.body.classList.remove('has-cursor');
                     dismissIntro();
                 }
             });
